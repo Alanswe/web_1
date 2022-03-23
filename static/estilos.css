@@ -1,3 +1,16 @@
 body{
     background-color: green;
 }
+
+header{
+    height: 30px;
+    background-color: cornflowerblue;
+    color: aliceblue;
+    font-size: x-large;
+}
+nav ul{
+    list-style: none;
+}
+nav ul li{
+    display: inline-block;
+}
