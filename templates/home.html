@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+
+{%block title%}Home{%endblock%}
+
+{%block content%}
+    <h1>Hola Mundo de las plantillas</h1>
+    <table>
+        <tr>
+            <th>Nombre</th>        <th>Número</th>         <th>Día</th>
+        </tr>
+        {% for fila in datos%}
+        <tr>
+            <td>{{fila[0]}}</td>   <td>{{fila[1]}}</td>    <td>{{fila[2]}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+{%endblock%}
+
+
+<!-- <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Hola Mundo de las plantillas</h1>
+        <table>
+            <tr>
+                <th>Nombre</th>      <th>Número</th>      <th>Día</th>
+            </tr>
+            {% for fila in datos%}
+            <tr>
+                <td>{{fila[0]}}</td>            <td>{{fila[1]}}</td>            <td>{{fila[2]}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+        <h2>Nombre: {{Nombre}}</h2>
+        <h2>Fecha: {{Fecha}}</h2>
+    </body>
+    </html> 
+-->
