@@ -14,3 +14,10 @@ nav ul{
 nav ul li{
     display: inline-block;
 }
+
+footer{
+    height: 30px;
+    background-color: cornflowerblue;
+    color: aliceblue;
+    font-size: x-large;
+}
