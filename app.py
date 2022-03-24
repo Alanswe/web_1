@@ -1,4 +1,3 @@
-from logging import root
 import os
 from bottle import route,run, TEMPLATE_PATH,jinja2_view,static_file
 
@@ -12,9 +11,9 @@ def server_static(filename):
 @jinja2_view('home.html')
 def hola():
     return {'datos':[
-        ('Alan',2,'Lunes'),
-        ('Juan',3,'Martes'),
-        ('Pepe',4,'Jueves')
+        ('Alan',1,'Lunes'),
+        ('Juan',2,'Martes'),
+        ('Pepe',3,'Jueves')
         ]
         }
     #return {'Nombre': 'Alan','Fecha': '23/09/2022'}
