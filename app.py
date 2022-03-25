@@ -23,16 +23,25 @@ def hola():
     cnx = sqlite3.connect(BASE_DATOS)
     consulta = "select id,nombre,apellidos,dni from persona"
     cursor = cnx.execute(consulta)
-    filas = cursor.fetchall()#obtener una fila para procesarla, trae todos las filas
+    filas = cursor.fetchall()#obtener todas fila para procesarla, trae todas las filas
     cnx.close()#cerrar siempre la consulta
     return {"datos": filas}
 
     #return {'Nombre': 'Alan','Fecha': '23/09/2022'}
 
-@route('/formulario')
+@route('/editar')
+@route('/editar/<id:int>')
 @jinja2_view('formulario.html')
-def mi_form():
-    return {}
+def mi_form(id=None):#none para que sea opcional
+    if 'id' is None:
+        return {}
+    else:
+        cnx = sqlite3.connect(BASE_DATOS)
+        consulta = "select id,nombre,apellidos,dni from persona where id = ?"
+        cursor = cnx.execute(consulta,(id,))#la coma dice que es una tupla (id,)
+        filas = cursor.fetchone()##obtener una fila para procesarla
+        cnx.close()
+        return {'datos': filas}
 
 @route('/guardar',method='POST')
 def guardar():
@@ -63,8 +72,14 @@ def guardar():
     dni = request.POST.dni
 
     cnx = sqlite3.connect(BASE_DATOS)
-    consulta = "INSERT into persona (nombre,apellidos,dni) values(?,?,?)"
-    cnx.execute(consulta,(nombre,apellidos,dni))
+    id = request.POST.id
+    if id == '':#Alta nueva
+        consulta = "INSERT into persona (nombre,apellidos,dni) values(?,?,?)"
+        cnx.execute(consulta,(nombre,apellidos,dni))
+    else:
+        consulta = "update persona set nombre = ?, apellidos = ?, dni = ? where id = ?"
+        cnx.execute(consulta,(nombre,apellidos,dni,id))
+    
     cnx.commit()#es para guardar
     cnx.close()#cerrar siempre la consulta
     redirect('/')
