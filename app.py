@@ -1,5 +1,5 @@
 import os
-from bottle import route,run, TEMPLATE_PATH,jinja2_view,static_file,request
+from bottle import route,run, TEMPLATE_PATH,jinja2_view,static_file,request,redirect
 import sqlite3
 
 TEMPLATE_PATH.append(os.path.join(os.path.dirname(__file__),'templates'))
@@ -14,12 +14,19 @@ def server_static(filename):
 @route('/')
 @jinja2_view('home.html')
 def hola():
-    return {'datos':[
-        ('Alan',1,'Lunes'),
-        ('Juan',2,'Martes'),
-        ('Pepe',3,'Jueves')
-        ]
-        }
+    # return {'datos':[
+    #     ('Alan',1,'Lunes'),
+    #     ('Juan',2,'Martes'),
+    #     ('Pepe',3,'Jueves')
+    #     ]
+    #     }
+    cnx = sqlite3.connect(BASE_DATOS)
+    consulta = "select id,nombre,apellidos,dni from persona"
+    cursor = cnx.execute(consulta)
+    filas = cursor.fetchall()#obtener una fila para procesarla, trae todos las filas
+    cnx.close()#cerrar siempre la consulta
+    return {"datos": filas}
+
     #return {'Nombre': 'Alan','Fecha': '23/09/2022'}
 
 @route('/formulario')
@@ -50,7 +57,7 @@ def guardar():
     # if 'checoches3' in request.POST:
     #     checoche.append(request.POST.checoches3)
 
-    # ----------------------------------- formualrio 2
+    # ----------------------------------- formulario 2
     nombre = request.POST.nombre
     apellidos = request.POST.apellidos
     dni = request.POST.dni
@@ -60,5 +67,6 @@ def guardar():
     cnx.execute(consulta,(nombre,apellidos,dni))
     cnx.commit()#es para guardar
     cnx.close()#cerrar siempre la consulta
+    redirect('/')
 
 run(host='localhost',port=8080,debug=True)
