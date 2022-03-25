@@ -6,11 +6,11 @@
     <h1>Hola Mundo de las plantillas</h1>
     <table>
         <tr>
-            <th>Nombre</th>        <th>Número</th>         <th>Día</th>
+            <th>Id</th>              <th>Nombre</th>        <th>Apellidos</th>         <th>DNI</th>
         </tr>
         {% for fila in datos%}
         <tr>
-            <td>{{fila[0]}}</td>   <td>{{fila[1]}}</td>    <td>{{fila[2]}}</td>
+            <td>{{fila[0]}}</td>   <td>{{fila[1]}}</td>    <td>{{fila[2]}}</td>  <td>{{fila[3]}}</td>
         </tr>
         {%endfor%}
     </table>
