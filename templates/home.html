@@ -28,6 +28,13 @@
     {%endfor%}
     </p>
 
+    <p>
+        {% for fila in datos%}
+        <input type="checkbox" name="persona{{fila[1]}}" value="{{fila[1]}}">
+        <label for="persona{{fila[1]}}">{{fila[0]}}</label><br>
+        {%endfor%}
+    </p>
+
 {%endblock%}
 
 

@@ -1,0 +1,75 @@
+{%extends 'base.html'%}
+
+{%block title%}Home{%endblock%}
+
+{%block content%}
+<!-- <FORM  action="/guardar" method="post" autocomplete > 
+    <DIV title="Escriba su nombre de usuario, máximo 15 caracteres"> 
+        <label for="usuario">Nombre de usuario</LABEL>
+        <input type="text" id="usuario" maxlength="15" name="usuario" required placeholder="p.e. Casimiro">
+    </DIV>
+    <DIV>
+        <LABEL for="correo"> Correo electrónico </LABEL>
+        <INPUT type="email" id="correo" name="correo" required  placeholder="p.e. ejemplo@empresa.com"/> 
+    </DIV>
+    <DIV title="Debe contener al menos un número y una letra minúscula y mayúscula, y al menos 8 o más caracteres">
+        <LABEL for="clave1" >Escribe la clave</LABEL>
+        <INPUT id="clave1" name="clave1" required type="password" placeholder="Por ejemplo, X8df!90EO" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" > 
+    </DIV>
+    <DIV title="Debe contener al menos un número y una letra minúscula y mayúscula, y al menos 8 o más caracteres">
+        <LABEL for="clave2" >Escribe la clave otra vez</LABEL>
+        <INPUT id="clave2" name="clave2" required type="password" placeholder="Debe coincidir con la anterior" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" > 
+    </DIV>
+
+    <label for="cars">Choose a car:</label>
+    <select id="cars" name="cars">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="opel">Opel</option>
+      <option value="audi">Audi</option>
+    </select> 
+
+    <p>
+        <input type="radio" id="dato1" name="num_ratio" value="1">
+        <label for="dato1">uno</label><br/>
+        <input type="radio" id="dato2" name="num_ratio" value="2">
+        <label for="dato2">Dos</label><br/>
+        <input type="radio" id="dato3" name="num_ratio" value="3">
+        <label for="dato3">Tres</label><br/>
+    </p>
+
+    <p>
+        <input type="checkbox" name="vehiculo" value="Bike">
+        <label for="checoches1">Bike</label><br>
+        <input type="checkbox" name="vehiculo" value="car">
+        <label for="checoches2">car</label><br>
+        <input type="checkbox" name="vehiculo" value="boat">
+        <label for="checoches3">boat</label><br>
+    </p>
+
+    <DIV> 
+        <INPUT type="submit" value="Registro"> 
+    </DIV> -->
+    <!-- <DIV>Si ya eres miembro
+        <a href="18formularioLogin.html" target="_blank"> ¡loguéate! </a>
+    </DIV> -->
+<!-- </FORM> -->
+
+<form action="/guardar" method="post">
+    <h2>Datos personales</h2>
+    <input type="hidden" id="id" name="id"><br/>
+
+
+    <label for="nombre">Nombre: </label>
+    <input type="text" id="nombre" name="nombre"><br/>
+
+    <label for="apellidos">Apellidos: </label>
+    <input type="text" id="apellidos" name="apellidos"><br/>
+
+    <label for="dni">DNI: </label>
+    <input type="text" id="dni" name="dni"><br/>
+    <br/>
+    <input type="submit" value="Enviar">
+</form>
+
+{%endblock%}
