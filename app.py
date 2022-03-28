@@ -21,7 +21,7 @@ def hola():
     #     ]
     #     }
     cnx = sqlite3.connect(BASE_DATOS)
-    consulta = "select id,nombre,apellidos,dni from persona"
+    consulta = "select id,nombre,apellidos,dni, id_ocupation from persona"
     cursor = cnx.execute(consulta)
     filas = cursor.fetchall()#obtener todas fila para procesarla, trae todas las filas
     cnx.close()#cerrar siempre la consulta
@@ -33,15 +33,20 @@ def hola():
 @route('/editar/<id:int>')
 @jinja2_view('formulario.html')
 def mi_form(id=None):#none para que sea opcional
-    if 'id' is None:
-        return {}
+    cnx = sqlite3.connect(BASE_DATOS)
+    consulta_d = 'select * from T_ocupation'
+    cursor = cnx.execute(consulta_d)
+    ocupaciones = cursor.fetchall()
+
+    if id is None:
+        return {'ocupaciones': ocupaciones}
     else:
-        cnx = sqlite3.connect(BASE_DATOS)
-        consulta = "select id,nombre,apellidos,dni from persona where id = ?"
-        cursor = cnx.execute(consulta,(id,))#la coma dice que es una tupla (id,)
-        filas = cursor.fetchone()##obtener una fila para procesarla
-        cnx.close()
-        return {'datos': filas}
+        consulta = "select id,nombre,apellidos,dni, id_ocupation from persona where id = ?"
+        cursor = cnx.execute(consulta,(id,)) # la coma dice que es una tupla (id,)
+        filas = cursor.fetchone() # obtener una fila para procesarla
+    
+    cnx.close()
+    return {'datos': filas,'ocupaciones': ocupaciones}
 
 
 @route('/delete/<id:int>')
@@ -82,15 +87,17 @@ def guardar():
     nombre = request.POST.nombre
     apellidos = request.POST.apellidos
     dni = request.POST.dni
+    id = request.POST.id
+    ocupacion = request.POST.ocupacion
 
     cnx = sqlite3.connect(BASE_DATOS)
     id = request.POST.id
     if id == '':#Alta nueva
-        consulta = "INSERT into persona (nombre,apellidos,dni) values(?,?,?)"
-        cnx.execute(consulta,(nombre,apellidos,dni))
+        consulta = "INSERT into persona (nombre,apellidos,dni,id_ocupation) values(?,?,?,?)"
+        cnx.execute(consulta,(nombre,apellidos,dni,ocupacion))
     else:
-        consulta = "update persona set nombre = ?, apellidos = ?, dni = ? where id = ?"
-        cnx.execute(consulta,(nombre,apellidos,dni,id))
+        consulta = "update persona set nombre = ?, apellidos = ?, dni = ?, id_ocupation = ? where id = ?"
+        cnx.execute(consulta,(nombre,apellidos,dni,ocupacion,id))
     
     cnx.commit()#es para guardar
     cnx.close()#cerrar siempre la consulta
