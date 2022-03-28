@@ -6,11 +6,12 @@
     <h1>Hola Mundo de las plantillas</h1>
     <table>
         <tr>
-            <th>Id</th>           <th>Nombre</th>        <th>Apellidos</th>         <th>DNI</th>
+            <th>Id</th>           <th>Nombre</th>        <th>Apellidos</th>         <th>DNI</th> <th>Ocupación</th>
         </tr>
         {% for fila in datos%}
         <tr>
-            <td>{{fila[0]}}</td>   <td>{{fila[1]}}</td>    <td>{{fila[2]}}</td>  <td>{{fila[3]}}</td> <td><a href="/editar/{{fila[0]}}">Editar</a></td>
+            <td>{{fila[0]}}</td>   <td>{{fila[1]}}</td>    <td>{{fila[2]}}</td>  <td>{{fila[3]}}</td>  <td>{{fila[4]}}</td>
+            <td><a href="/editar/{{fila[0]}}">Editar</a></td>
             <td><a href="/delete/{{fila[0]}}">Borrar</a></td>
         </tr>
         {%endfor%}
