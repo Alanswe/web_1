@@ -69,7 +69,15 @@
     <label for="dni">DNI: </label>
     <input type="text" id="dni" name="dni" value="{%if datos%}{{datos[3]}}{%endif%}"><br/>
     
+    <label for="ocupacion">ocupacion</label>   
+        <select id="ocupacion" name="ocupacion">
+            <option value="-1">Seleccione ocupación</option>
+            {% for o in ocupaciones%}
+                <option value="{{o[0]}}">{{o[1]}}</option>
+            {%endfor%}
+        </select>
     <br/>
+    
     <input type="submit" value="Enviar">
 </form>
 
