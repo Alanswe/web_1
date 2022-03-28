@@ -43,6 +43,18 @@ def mi_form(id=None):#none para que sea opcional
         cnx.close()
         return {'datos': filas}
 
+
+@route('/delete/<id:int>')
+def delete(id):
+        cnx = sqlite3.connect(BASE_DATOS)
+        consulta = f'delete from persona where id ="{id}"'
+        #consulta = "delete from persona where id = " + str(id)
+        cnx.execute(consulta)
+        cnx.commit()
+        cnx.close()
+        redirect('/')
+
+
 @route('/guardar',method='POST')
 def guardar():
     # checoche = []
