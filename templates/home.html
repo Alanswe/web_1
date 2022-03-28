@@ -10,7 +10,8 @@
         </tr>
         {% for fila in datos%}
         <tr>
-            <td>{{fila[0]}}</td>   <td>{{fila[1]}}</td>    <td>{{fila[2]}}</td>  <td>{{fila[3]}}</td>
+            <td>{{fila[0]}}</td>   <td>{{fila[1]}}</td>    <td>{{fila[2]}}</td>  <td>{{fila[3]}}</td> <td><a href="/editar/{{fila[0]}}">Editar</a></td>
+            <td><a href="/delete/{{fila[0]}}">Borrar</a></td>
         </tr>
         {%endfor%}
     </table>
