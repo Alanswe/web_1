@@ -1,10 +1,17 @@
 <header>
     <nav>
         <ul>
-            <li><a href="/editar">Personas</a></li>
-            <li><a href="">Dos</a></li>
-            <li><a href="">Tres</a></li>
-            <li><a href="">Cuatro</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/editar">Registro</a></li>
+            <li><a href="/editar/1">Uno</a></li>
+            <li><a href="/editar/2">Dos</a></li>
+            <li>
+                <form action="/editar/" method="post">
+                <label for="edit_id">Editar ID:</label>
+                <input type="int">
+                <input type="submit" value="Editar">
+                </form>
+            </li>
         </ul>
     </nav>
 </header>

@@ -51,7 +51,7 @@
         <INPUT type="submit" value="Registro"> 
     </DIV> -->
     <!-- <DIV>Si ya eres miembro
-        <a href="18formularioLogin.html" target="_blank"> ¡loguéate! </a>
+        <a href="formulario.html" target="_blank"> ¡loguéate! </a>
     </DIV> -->
 <!-- </FORM> -->
 
@@ -73,11 +73,27 @@
         <select id="ocupacion" name="ocupacion">
             <option value="-1">Seleccione ocupación</option>
             {% for o in ocupaciones%}
-                <option value="{{o[0]}}">{{o[1]}}</option>
+                <option value="{{o[0]}}" {%if (datos) and (datos[4] == o[0]) %} selected {%endif%} >{{o[1]}}</option>
             {%endfor%}
         </select>
     <br/>
-    
+
+    <hr>
+        <h2>Números</h2>
+        {% for num in numeros%}
+            <input type="radio" id="dato{{num[0]}}" name="numero" value="{{num[0]}}">
+            <label for="dato{{num[0]}}">{{num[1]}}</label><br/>
+        {%endfor%}
+    <hr/>
+
+<!-- 
+    <p>
+        {% for fila in datos%}
+        <input type="checkbox" name="persona{{fila[1]}}" value="{{fila[1]}}">
+        <label for="persona{{fila[1]}}">{{fila[0]}}</label><br/>
+        {%endfor%}
+    </p> -->
+
     <input type="submit" value="Enviar">
 </form>
 
