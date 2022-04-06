@@ -7,7 +7,7 @@ TEMPLATE_PATH.append(os.path.join(os.path.dirname(__file__),'templates'))
 BASE_DATOS = os.path.join(os.path.dirname(__file__),'personas.db') # en sqlite, una base de datos es un fichero
 
 
-@route('/static/<filename>')
+@route('/static/<filename:path>')
 def server_static(filename):
     return static_file(filename,root='./static')
 
